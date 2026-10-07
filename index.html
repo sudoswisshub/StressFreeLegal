@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura – Calm &amp; Focus - Mindfulness & Calm for iOS</title>
+    <meta name="description"
+        content="Find your calm with Aura – Calm &amp; Focus—your personal companion for guided breathing, meditation, and mood tracking on iOS.">
+    <style>
+        :root {
+            --sf-lavender: #9B87F5;
+            --sf-sky-blue: #66BFFF;
+            --sf-mint: #59D1B5;
+            --sf-peach: #FAA68C;
+            --sf-sunset: #FFBA73;
+            --sf-surface: #F9F8FF;
+            --sf-card: #FFFFFF;
+            --sf-text-main: #1A1A24;
+            --sf-text-muted: #6B6B78;
+            --sf-gradient-bg: linear-gradient(135deg, #F0EFFF 0%, #F9F8FF 100%);
+            --sf-glass: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --sf-surface: #101018;
+                --sf-card: #1A1A24;
+                --sf-text-main: #FFFFFF;
+                --sf-text-muted: #A1A1B2;
+                --sf-gradient-bg: linear-gradient(135deg, #1A162E 0%, #0D0D14 100%);
+                --sf-glass: rgba(26, 26, 36, 0.7);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--sf-gradient-bg);
+            color: var(--sf-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        header {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--sf-lavender), var(--sf-sky-blue));
+            margin: 0 auto 24px;
+            border-radius: 22.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 10px 30px rgba(155, 135, 245, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--sf-lavender), var(--sf-sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--sf-text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--sf-text-main);
+            color: var(--sf-surface);
+            padding: 18px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        .card {
+            background: var(--sf-card);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--sf-text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Feature Colors */
+        .card.breathing .card-icon {
+            background: rgba(102, 191, 255, 0.15);
+            color: var(--sf-sky-blue);
+        }
+
+        .card.meditation .card-icon {
+            background: rgba(89, 209, 181, 0.15);
+            color: var(--sf-mint);
+        }
+
+        .card.mood .card-icon {
+            background: rgba(250, 166, 140, 0.15);
+            color: var(--sf-peach);
+        }
+
+        .card.sounds .card-icon {
+            background: rgba(155, 135, 245, 0.15);
+            color: var(--sf-lavender);
+        }
+
+        /* Privacy Section */
+        .privacy-box {
+            background: linear-gradient(135deg, rgba(89, 209, 181, 0.1), rgba(102, 191, 255, 0.1));
+            padding: 60px;
+            border-radius: 40px;
+            margin: 80px 0;
+            text-align: center;
+            border: 1px solid rgba(89, 209, 181, 0.2);
+        }
+
+        .privacy-box h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 100px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        footer nav {
+            margin-bottom: 30px;
+        }
+
+        footer a {
+            color: var(--sf-text-muted);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--sf-lavender);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--sf-text-muted);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .privacy-box {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="app-icon">🌿</div>
+            <h1>Aura – Calm &amp; Focus</h1>
+            <p class="subtitle">Breath by breath, thought by thought. Your journey to daily calm starts here.</p>
+            <a href="#" class="cta-button">Download on the App Store</a>
+        </header>
+
+        <section class="features">
+            <div class="card breathing">
+                <div class="card-icon">🫁</div>
+                <h3>Guided Breathing</h3>
+                <p>Lower your stress levels in minutes with scientifically-backed breathing patterns designed for
+                    instant relief.</p>
+            </div>
+            <div class="card meditation">
+                <div class="card-icon">🧠</div>
+                <h3>Mindful Meditation</h3>
+                <p>Build a lasting habit with our intuitive meditation timer and session history tracking.</p>
+            </div>
+            <div class="card mood">
+                <div class="card-icon">🎭</div>
+                <h3>Insightful Moods</h3>
+                <p>Log your emotions daily to visualize patterns and understand your mental well-being over time.</p>
+            </div>
+            <div class="card sounds">
+                <div class="card-icon">🌧️</div>
+                <h3>Ambient Sounds</h3>
+                <p>Create your perfect focus or relaxation environment with high-quality soundscapes like rain, ocean,
+                    and forest.</p>
+            </div>
+        </section>
+
+        <div class="privacy-box">
+            <div style="font-size: 40px; margin-bottom: 20px;">🔒</div>
+            <h2>Private & Secure</h2>
+            <p>Your mental health is personal. That's why your notes and mood entries never leave your device, synced
+                optionally via your private iCloud.</p>
+        </div>
+
+        <footer>
+            <nav>
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+            </nav>
+            <div class="copyright">&copy; 2026 Aura – Calm &amp; Focus. Designed for peace of mind.</div>
+        </footer>
+    </div>
+</body>
+
+</html>
